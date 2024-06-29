@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnolConnect</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#!">
+
+                <img src="~/Content/Imagenes/nnm.jpg" width="30" height="30" alt="">
+
+                PinolConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Index","Tienda")">Inicio</a></li>
+                </ul>
+                <form class="d-flex">
+
+                    @if (Session["Cliente"] == null)
+                    {
+
+                        <a class="btn btn-outline-dark" aria-current="page" href="@Url.Action("Index", "Acceso")"><i class="fas fa-sign-out-alt me-1"></i>Iniciar Sesión</a>
+                    }
+                    else
+                    {
+
+                        <a class="btn btn-outline-dark" href="@Url.Action("Carrito","Tienda")">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">0</span>
+                        </a>
+
+
+                        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#!"><b>@User.Identity.Name</b></a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("MisCompras","Tienda")">Mis Compras</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Acceso")">Cerrar Sesion</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    }
+
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+
+
+    <footer class="navbar-dark bg-dark py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <img class="logo1 mb-3" src="~/Content/Imagenes/nnm.jpg" alt="#" />
+                    <p class="text-white">Síguenos en nuestras redes sociales para estar al tanto de nuestras últimas novedades y promociones:</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="me-3"><a href="#"><i class="fa fa-facebook fa-2x text-white"></i></a></li>
+                        <li class="me-3"><a href="#"><i class="fa fa-twitter fa-2x text-white"></i></a></li>
+                        <li class="me-3"><a href="#"><i class="fa fa-linkedin-square fa-2x text-white"></i></a></li>
+                        <li class="me-3"><a href="#"><i class="fa fa-instagram fa-2x text-white"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h3 class="text-white">Acerca de Pinolconnect</h3>
+                    <p class="text-white">En PinolConect nos dedicamos a ofrecer a nuestros clientes los mejores productos y servicios en tecnología móvil. Nuestra misión es proporcionar dispositivos y accesorios de alta calidad que mejoren la vida digital de las personas.</pclass="text-white">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h3 class="text-white">Contáctanos</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-envelope"></i> Email: <a href="mailto:info@pinolconect.com" class="text-white">info@pinolconect.com</a></li>
+                        <li><i class="fa fa-phone"></i> Teléfono: <a href="tel:+50598756877" class="text-white">+505 9875-6877</a></li>
+                        <li><i class="fa fa-map-marker"></i> Dirección: Bello Amanecer C.Sandino, de donde fue la terminal de la 125, 1c abajo, 20vrs al sur</li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <form class="bottom_form">
+                        <h3 class="text-white">Suscripción</h3>
+                        <p class="text-white">Suscríbete a nuestro boletín para recibir noticias y ofertas especiales:</p>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Escribe tu Email" type="email" name="email">
+                            <button class="btn btn-primary" type="submit">Suscribirse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bg-secondary text-white text-center py-3">
+            <div class="container">
+                <p>
+                    &copy;
+                    <script>document.write(new Date().getFullYear());</script> Todos los derechos reservados. Desarrollado por <a href="#" class="text-white">PinolConect S.A.</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            MostrarCantidadCarrito();
+        })
+
+
+
+        function MostrarCantidadCarrito() {
+
+            if ($("#cantidadcarrito").length > 0) {
+
+                jQuery.ajax({
+                    url: '@Url.Action("CantidadEnCarrito","Tienda")',
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        $("#cantidadcarrito").text(data.cantidad)
+                    }
+
+                });
+
+            }
+
+        }
+
+    </script>
+</body>
+</html>
